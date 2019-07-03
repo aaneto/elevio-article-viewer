@@ -3,6 +3,23 @@ defprotocol AsTable do
   def as_table(data)
 end
 
+defimpl AsTable, for: Elevio.Article do
+  def as_table(article) do
+    Enum.join(
+      [
+        "Id: #{article.id}",
+        "Title: #{article.title}",
+        "Status: #{article.status}",
+        "Source: #{article.source}",
+        "Author.name: #{article.author.name}",
+        "Author.email: #{article.author.email}",
+        "Created @: #{article.created_at}"
+      ],
+      "\n"
+    )
+  end
+end
+
 defimpl AsTable, for: Elevio.KeywordSearch do
   def as_table(search) do
     tables =
