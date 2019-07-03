@@ -15,18 +15,19 @@ defmodule Elevio.ClientMock do
         _ -> nil
       end
 
-    if not is_nil(body) do
+    if is_nil(body) do
+      {
+        :error,
+        {:invalidresponse, 404}
+      }
+
+    else
       {
         :ok,
         %HTTPoison.Response{
           status_code: 200,
           body: body
         }
-      }
-    else
-      {
-        :error,
-        {:invalidresponse, 404}
       }
     end
   end
