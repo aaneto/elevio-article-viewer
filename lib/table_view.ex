@@ -64,6 +64,60 @@ defmodule TableView do
   def search_by_id(auth, id) do
     TableView.clear_screen()
     IO.puts("Fetching article #{id}")
+
+    case Elevio.App.get_article_by_id(auth, id) do
+      {:ok, article} ->
+        IO.puts(AsTable.as_table(article))
+
+      {:error, {:invalidresponse, 401}} ->
+        IO.puts("Invalid credentials. (401)")
+
+      {:error, {:invalidresponse, 404}} ->
+        IO.puts("Article does not exist (404).")
+
+      {:error, {:invalidresponse, status_code}} ->
+        IO.puts("Cannot display article, server responded with #{status_code}")
+
+      {:error, {:missingfield, where, field}} ->
+        IO.puts(~s(Error deserializing "#{field}" for "#{where}"))
+
+      {:error, reason} ->
+        IO.puts("An unexpected error occured: #{reason}")
+    end
+
+    instructions =
+      Enum.join(
+        [
+          "e: exit",
+          "n: next",
+          "p: previous",
+          "g $id: goto id"
+        ],
+        "\n"
+      )
+
+    prompt_text = "\n" <> instructions <> "\n"
+
+    case prompt_text |> IO.gets() |> String.trim() do
+      "n" <> _ ->
+        search_by_id(auth, id + 1)
+
+      "p" <> _ ->
+        search_by_id(auth, id - 1)
+
+      "g" <> new_id ->
+        case Integer.parse(new_id) do
+          :error ->
+            IO.puts("Could not parse Goto ID: #{new_id}.")
+            search_by_id(auth, id)
+
+          {num_id, _} ->
+            search_by_id(auth, num_id)
+        end
+
+      _ ->
+        IO.puts("Exitting.")
+    end
   end
 
   def show_all do
