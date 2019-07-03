@@ -36,16 +36,16 @@ defmodule Elevio do
 
     case options do
       [keyword: keyword] ->
-        TableView.search_by_keyword(auth, keyword, 1)
+        Elevio.TableView.search_by_keyword(auth, keyword, 1)
 
       [id: id] ->
         case Integer.parse(id) do
-          {num, _} -> TableView.search_by_id(auth, num)
+          {num, _} -> Elevio.TableView.search_by_id(auth, num)
           :error -> IO.puts("Invalid ID. Exitting.")
         end
 
       [] ->
-        TableView.show_all()
+        Elevio.TableView.show_all()
 
       _ ->
         IO.puts("You cannot view by id AND keyword.")

@@ -1,4 +1,4 @@
-defmodule TableView do
+defmodule Elevio.TableView do
   @moduledoc """
   The TableView module is responsible for displaying a paginated view
   over any table
@@ -7,7 +7,7 @@ defmodule TableView do
   any data that can be displayed as a key-value pair.
   """
   def search_by_keyword(auth, keyword, page) do
-    TableView.clear_screen()
+    clear_screen()
     IO.puts("Searching articles with keyword #{keyword}")
 
     display_keyword_search(auth, keyword, page)
@@ -69,7 +69,7 @@ defmodule TableView do
   end
 
   def search_by_id(auth, id) do
-    TableView.clear_screen()
+    clear_screen()
     IO.puts("Fetching article #{id}")
 
     display_single_article(auth, id)
@@ -135,7 +135,7 @@ defmodule TableView do
   end
 
   def show_all do
-    TableView.clear_screen()
+    clear_screen()
     IO.puts("Showing All")
   end
 
