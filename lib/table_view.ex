@@ -10,6 +10,11 @@ defmodule TableView do
     TableView.clear_screen()
     IO.puts("Searching articles with keyword #{keyword}")
 
+    display_keyword_search(auth, keyword, page)
+    prompt_keyword_search(auth, keyword, page)
+  end
+
+  def display_keyword_search(auth, keyword, page) do
     case Elevio.App.get_articles_by_keyword(auth, keyword, page, "en") do
       {:ok, search} ->
         IO.puts(AsTable.as_table(search))
@@ -21,7 +26,9 @@ defmodule TableView do
       {:error, error} ->
         IO.puts("An unexpected error occured: #{error}")
     end
+  end
 
+  def prompt_keyword_search(auth, keyword, page) do
     instructions =
       Enum.join(
         [
@@ -65,26 +72,11 @@ defmodule TableView do
     TableView.clear_screen()
     IO.puts("Fetching article #{id}")
 
-    case Elevio.App.get_article_by_id(auth, id) do
-      {:ok, article} ->
-        IO.puts(AsTable.as_table(article))
+    display_single_article(auth, id)
+    prompt_single_article(auth, id)
+  end
 
-      {:error, {:invalidresponse, 401}} ->
-        IO.puts("Invalid credentials. (401)")
-
-      {:error, {:invalidresponse, 404}} ->
-        IO.puts("Article does not exist (404).")
-
-      {:error, {:invalidresponse, status_code}} ->
-        IO.puts("Cannot display article, server responded with #{status_code}")
-
-      {:error, {:missingfield, where, field}} ->
-        IO.puts(~s(Error deserializing "#{field}" for "#{where}"))
-
-      {:error, reason} ->
-        IO.puts("An unexpected error occured: #{reason}")
-    end
-
+  def prompt_single_article(auth, id) do
     instructions =
       Enum.join(
         [
@@ -117,6 +109,28 @@ defmodule TableView do
 
       _ ->
         IO.puts("Exitting.")
+    end
+  end
+
+  def display_single_article(auth, id) do
+    case Elevio.App.get_article_by_id(auth, id) do
+      {:ok, article} ->
+        IO.puts(AsTable.as_table(article))
+
+      {:error, {:invalidresponse, 401}} ->
+        IO.puts("Invalid credentials. (401)")
+
+      {:error, {:invalidresponse, 404}} ->
+        IO.puts("Article does not exist (404).")
+
+      {:error, {:invalidresponse, status_code}} ->
+        IO.puts("Cannot display article, server responded with #{status_code}")
+
+      {:error, {:missingfield, where, field}} ->
+        IO.puts(~s(Error deserializing "#{field}" for "#{where}"))
+
+      {:error, reason} ->
+        IO.puts("An unexpected error occured: #{reason}")
     end
   end
 
