@@ -20,7 +20,6 @@ defmodule Elevio.ClientMock do
         :error,
         {:invalidresponse, 404}
       }
-
     else
       {
         :ok,
