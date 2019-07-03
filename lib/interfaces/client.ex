@@ -1,4 +1,9 @@
 defmodule Elevio.ClientBehaviour do
+  @moduledoc """
+  The ClientBehaviour Behaviour is the main definition
+  on how a Elevio Client should be interacted with, this is
+  the basis for Client IO decoupling.
+  """
   @callback get_article_by_id(%Elevio.Auth{}, number) ::
               {:ok, %HTTPoison.Response{}} | {:error, term}
   @callback get_articles_by_keyword(%Elevio.Auth{}, String.t(), String.t(), String.t()) ::

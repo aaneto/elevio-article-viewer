@@ -1,4 +1,9 @@
 defmodule Elevio.ClientMock do
+  @moduledoc """
+  The ClientMock is a Stub implementation of the Client
+  to emulate state, it is used for testing and "offline"
+  execution.
+  """
   @behaviour Elevio.ClientBehaviour
   def get_article_by_id(_auth, id) do
     body =

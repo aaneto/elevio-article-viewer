@@ -1,4 +1,9 @@
 defmodule Elevio.KeywordResult do
+  @moduledoc """
+  The KeywordResult is a single article
+  result on a keyword search on the Elevio
+  API.
+  """
   @derive [Poison.Encoder]
   defstruct [
     :category_id,
@@ -8,6 +13,11 @@ defmodule Elevio.KeywordResult do
 end
 
 defmodule Elevio.KeywordSearch do
+  @moduledoc """
+  The KeywordSearch struct represents
+  a search by keyword on the Elevio API,
+  with important paginating metadata.
+  """
   @derive [Poison.Encoder]
   defstruct [
     :count,

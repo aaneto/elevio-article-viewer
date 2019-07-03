@@ -1,4 +1,9 @@
 defmodule Elevio.App do
+  @moduledoc """
+  The App module is a wrapper to the Elevio Client,
+  the main reason of this wrapping is separating IO
+  from logic, making the App itself "mockable".
+  """
   @client Application.get_env(:elevio, :elevio_client)
 
   def get_article_by_id(auth, id) do
