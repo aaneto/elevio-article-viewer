@@ -1,0 +1,59 @@
+{
+    "article": {
+        "updated_at": "2019-06-29T23:18:37Z",
+        "translations": [
+            {
+                "updated_at": "2019-06-29T23:18:37Z",
+                "title": "gregr",
+                "summary": "Whenever you get stuck, you can open up this help system to help get you through the tough times. At the top of the screen you'll see a search bar that you can use to search through our available help content, and as you browse around our site, we'll also offer up suggested reading above the main article list in this help center so the right help you need is always just a click away.",
+                "machine_summary": "At the top of the screen you'll see a search bar that you can use to search through our available help content, and as you browse around our site, we'll also offer up suggested reading above the main article list in this help center so the right help you need is always just a click away.",
+                "language_id": "en",
+                "id": 4,
+                "featured_image_url": null,
+                "created_at": "2019-06-29T23:18:37Z",
+                "body": "<p>Whenever you get stuck, you can open up this help system to help get you through the tough times.</p><p>At the top of the screen you&#39;ll see a search bar that you can use to search through our available help content, and as you browse around our site, we&#39;ll also offer up suggested reading above the main article list in this help center so the right help you need is always just a click away.</p><p>Go ahead, have a play!</p><p><br></p><p>asdasdasdadas</p>"
+            }
+        ],
+        "title": "gregr",
+        "status": "published",
+        "source": "custom",
+        "smart_groups": [],
+        "revision": null,
+        "order": 1,
+        "notes": "This is just a sample article to get you going, feel free to edit or remove this article",
+        "last_publisher": {
+            "name": "Adilson Neto",
+            "id": 13047,
+            "gravatar": "https://www.gravatar.com/avatar/aa5576c061023a29739d1e75be489ef2?e=almeidneto@gmail.com&s=100&d=https://static.elev.io/img/elevio-fallback-avatar.png",
+            "email": "almeidneto@gmail.com"
+        },
+        "last_published_at": "2019-06-29T23:18:37Z",
+        "keywords": [
+            "help",
+            "morehelp"
+        ],
+        "id": 1,
+        "external_id": null,
+        "editor_version": "2",
+        "created_at": "2019-06-27T21:35:37Z",
+        "contributors": [
+            {
+                "name": "Adilson Neto",
+                "id": 13047,
+                "gravatar": "https://www.gravatar.com/avatar/aa5576c061023a29739d1e75be489ef2?e=almeidneto@gmail.com&s=100&d=https://static.elev.io/img/elevio-fallback-avatar.png",
+                "email": "almeidneto@gmail.com"
+            }
+        ],
+        "category_id": 1,
+        "author": {
+            "name": "Safwan Kamarrudin",
+            "id": 5103,
+            "gravatar": "https://www.gravatar.com/avatar/657bce6ec668f8846af13cb502581ec1?e=safwan@elev.io&s=300&d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/Safwan%2BKamarrudin/256/2F9AFF/FFF/2/0.40",
+            "email": "safwan@elev.io"
+        },
+        "access_groups": [],
+        "access_emails": [],
+        "access_domains": [],
+        "access": "public"
+    }
+}

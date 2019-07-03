@@ -1,0 +1,90 @@
+{
+    "article": {
+        "updated_at": "2019-06-27T21:58:58Z",
+        "translations": [
+            {
+                "updated_at": "2019-06-27T21:35:37Z",
+                "title": "Need a hand?",
+                "summary": null,
+                "machine_summary": null,
+                "language_id": "en",
+                "id": 5,
+                "featured_image_url": null,
+                "created_at": "2019-06-27T21:35:37Z",
+                "body": "<p>Don't forget, we're always here to help. If you get stuck or have any questions, be sure to let us know and we can help you with whatever you need.</p><p>We're here to help</p>"
+            }
+        ],
+        "title": "Need a hand?",
+        "status": "published",
+        "source": "custom",
+        "smart_groups": [],
+        "revision": {
+            "updated_at": "2019-06-27T21:58:58Z",
+            "translations": [
+                {
+                    "updated_at": "2019-06-27T21:58:58Z",
+                    "title": "Need a hand?",
+                    "summary": null,
+                    "machine_summary": "Don't forget, we're always here to help. If you get stuck or have any questions, be sure to let us know and we can help you with whatever you need. We're here to help ",
+                    "language_id": "en",
+                    "id": 5,
+                    "featured_image_url": null,
+                    "created_at": "2019-06-27T21:58:58Z",
+                    "body": "<p>Don't forget, we're always here to help. If you get stuck or have any questions, be sure to let us know and we can help you with whatever you need.</p><p>We're here to help</p>"
+                }
+            ],
+            "status": "wip",
+            "source": "custom",
+            "smart_groups": [],
+            "order": 2,
+            "notes": null,
+            "last_publisher": null,
+            "last_published_at": null,
+            "keywords": [],
+            "id": 2,
+            "external_id": null,
+            "editor_version": "2",
+            "created_at": "2019-06-27T21:58:58Z",
+            "contributors": [
+                {
+                    "name": "Adilson Neto",
+                    "id": 13047,
+                    "gravatar": "https://www.gravatar.com/avatar/aa5576c061023a29739d1e75be489ef2?e=almeidneto@gmail.com&s=100&d=https://static.elev.io/img/elevio-fallback-avatar.png",
+                    "email": "almeidneto@gmail.com"
+                }
+            ],
+            "category_id": 1,
+            "author": {
+                "name": "Safwan Kamarrudin",
+                "id": 5103,
+                "gravatar": "https://www.gravatar.com/avatar/657bce6ec668f8846af13cb502581ec1?e=safwan@elev.io&s=300&d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/Safwan%2BKamarrudin/256/2F9AFF/FFF/2/0.40",
+                "email": "safwan@elev.io"
+            },
+            "access_groups": [],
+            "access_emails": [],
+            "access_domains": [],
+            "access": "public"
+        },
+        "order": 2,
+        "notes": null,
+        "last_publisher": null,
+        "last_published_at": null,
+        "keywords": [],
+        "id": 2,
+        "external_id": null,
+        "editor_version": "2",
+        "created_at": "2019-06-27T21:35:37Z",
+        "contributors": [],
+        "category_id": 1,
+        "author": {
+            "name": "Safwan Kamarrudin",
+            "id": 5103,
+            "gravatar": "https://www.gravatar.com/avatar/657bce6ec668f8846af13cb502581ec1?e=safwan@elev.io&s=300&d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/Safwan%2BKamarrudin/256/2F9AFF/FFF/2/0.40",
+            "email": "safwan@elev.io"
+        },
+        "access_groups": [],
+        "access_emails": [],
+        "access_domains": [],
+        "access": "public"
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "article": {
+        "updated_at": "2019-06-28T00:25:24Z",
+        "translations": [
+            {
+                "updated_at": "2019-06-28T00:25:24Z",
+                "title": "My testing article",
+                "summary": null,
+                "machine_summary": null,
+                "language_id": "en",
+                "id": 6,
+                "featured_image_url": null,
+                "created_at": "2019-06-28T00:25:24Z",
+                "body": "<p>An article with many keywords!</p>"
+            }
+        ],
+        "title": "My testing article",
+        "status": "published",
+        "source": "custom",
+        "smart_groups": [],
+        "revision": null,
+        "order": 999,
+        "notes": null,
+        "last_publisher": {
+            "name": "Adilson Neto",
+            "id": 13047,
+            "gravatar": "https://www.gravatar.com/avatar/aa5576c061023a29739d1e75be489ef2?e=almeidneto@gmail.com&s=100&d=https://static.elev.io/img/elevio-fallback-avatar.png",
+            "email": "almeidneto@gmail.com"
+        },
+        "last_published_at": "2019-06-28T00:25:24Z",
+        "keywords": [
+            "onekeyword",
+            "other",
+            "potatokeyword",
+            "orangekeyword"
+        ],
+        "id": 3,
+        "external_id": null,
+        "editor_version": "3",
+        "created_at": "2019-06-28T00:24:50Z",
+        "contributors": [
+            {
+                "name": "Adilson Neto",
+                "id": 13047,
+                "gravatar": "https://www.gravatar.com/avatar/aa5576c061023a29739d1e75be489ef2?e=almeidneto@gmail.com&s=100&d=https://static.elev.io/img/elevio-fallback-avatar.png",
+                "email": "almeidneto@gmail.com"
+            }
+        ],
+        "category_id": 1,
+        "author": {
+            "name": "Adilson Neto",
+            "id": 13047,
+            "gravatar": "https://www.gravatar.com/avatar/aa5576c061023a29739d1e75be489ef2?e=almeidneto@gmail.com&s=100&d=https://static.elev.io/img/elevio-fallback-avatar.png",
+            "email": "almeidneto@gmail.com"
+        },
+        "access_groups": [],
+        "access_emails": [],
+        "access_domains": [],
+        "access": "public"
+    }
+}
