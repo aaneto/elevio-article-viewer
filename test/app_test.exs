@@ -13,6 +13,11 @@ defmodule AppTest do
     assert article.author.name == "Safwan Kamarrudin"
   end
 
+  test "test client responded with 404" do
+    auth = %Elevio.Auth{api_key: nil, token: nil}
+    {:error, {:invalidresponse, 404}} = Elevio.App.get_article_by_id(auth, 17)
+  end
+
   test "error parsing article without author" do
     auth = %Elevio.Auth{
       token: "token",
