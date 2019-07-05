@@ -11,7 +11,12 @@ defmodule Elevio.TableView do
     IO.puts("Searching articles with keyword #{keyword}")
 
     display_keyword_search(auth, keyword, page)
-    prompt_keyword_search(auth, keyword, page)
+
+    case prompt_topic("page") do
+      {:ok, :exitcmd} -> IO.puts("Exitting. ")
+      {:error, {:parseerror, text}} -> IO.puts("Could not parse page #{text}")
+      {:ok, new_page} -> search_by_keyword(auth, keyword, new_page)
+    end
   end
 
   def display_keyword_search(auth, keyword, page) do
@@ -28,71 +33,16 @@ defmodule Elevio.TableView do
     end
   end
 
-  def prompt_keyword_search(auth, keyword, page) do
-    instructions =
-      Enum.join(
-        [
-          "e: exit",
-          "g page: goto another page",
-          "k keyword: search by another keyword"
-        ],
-        "\n"
-      )
-
-    prompt_text = "\n" <> instructions <> "\n"
-
-    case prompt_text |> IO.gets() |> String.trim() do
-      "g" <> new_page ->
-        case new_page |> String.trim() |> Integer.parse() do
-          :error ->
-            IO.puts("Could not parse Goto ID: #{new_page}.")
-            search_by_keyword(auth, keyword, page)
-
-          {num_page, _} ->
-            search_by_keyword(auth, keyword, num_page)
-        end
-
-      "k" <> new_keyword ->
-        search_by_keyword(auth, String.trim(new_keyword), 1)
-
-      _ ->
-        IO.puts("Exitting.")
-    end
-  end
-
   def search_by_id(auth, id) do
     clear_screen()
     IO.puts("Fetching article #{id}")
 
     display_single_article(auth, id)
-    prompt_single_article(auth, id)
-  end
 
-  def prompt_single_article(auth, id) do
-    instructions =
-      Enum.join(
-        [
-          "e: exit",
-          "g page: goto another id"
-        ],
-        "\n"
-      )
-
-    prompt_text = "\n" <> instructions <> "\n"
-
-    case prompt_text |> IO.gets() |> String.trim() do
-      "g" <> new_id ->
-        case new_id |> String.trim() |> Integer.parse() do
-          :error ->
-            IO.puts("Could not parse goto ID: #{new_id}.")
-            search_by_id(auth, id)
-
-          {num_id, _} ->
-            search_by_id(auth, num_id)
-        end
-
-      _ ->
-        IO.puts("Exitting.")
+    case prompt_topic("article id") do
+      {:ok, :exitcmd} -> IO.puts("Exitting. ")
+      {:error, {:parseerror, id}} -> IO.puts("Could not parse id #{id}")
+      {:ok, new_id} -> search_by_id(auth, new_id)
     end
   end
 
@@ -123,7 +73,12 @@ defmodule Elevio.TableView do
     IO.puts("Paginating all articles")
 
     display_paginated_articles(auth, page_number)
-    prompt_paginated_articles(auth, page_number)
+
+    case prompt_topic("page") do
+      {:ok, :exitcmd} -> IO.puts("Exitting. ")
+      {:error, {:parseerror, text}} -> IO.puts("Could not parse page #{text}")
+      {:ok, new_page} -> show_articles_paginated(auth, new_page)
+    end
   end
 
   def display_paginated_articles(auth, page_number) do
@@ -154,31 +109,26 @@ defmodule Elevio.TableView do
     end
   end
 
-  def prompt_paginated_articles(auth, page_number) do
-    instructions =
-      Enum.join(
-        [
-          "e: exit",
-          "g page: goto another page"
-        ],
-        "\n"
-      )
+  def prompt_topic(topic) do
+    instructions = """
+    e: exit,
+    g #{topic}: goto new #{topic}
+    """
 
     prompt_text = "\n" <> instructions <> "\n"
 
     case prompt_text |> IO.gets() |> String.trim() do
-      "g" <> new_page ->
-        case Integer.parse(new_page) do
+      "g" <> new_topic_id_str ->
+        case Integer.parse(new_topic_id_str) do
           :error ->
-            IO.puts("Could not parse Goto page: #{new_page}.")
-            show_articles_paginated(auth, page_number)
+            {:error, {:parseerror, new_topic_id_str}}
 
-          {new_page_number, _} ->
-            show_articles_paginated(auth, new_page_number)
+          {new_topic_id, _} ->
+            {:ok, new_topic_id}
         end
 
       _ ->
-        IO.puts("Exitting.")
+        {:ok, :exitcmd}
     end
   end
 
