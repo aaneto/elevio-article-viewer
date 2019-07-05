@@ -8,6 +8,8 @@ defmodule Elevio.ClientBehaviour do
               {:ok, %HTTPoison.Response{}} | {:error, term}
   @callback get_articles_by_keyword(%Elevio.Auth{}, String.t(), String.t(), String.t()) ::
               {:ok, %HTTPoison.Response{}} | {:error, term}
+  @callback get_paginated_articles(%Elevio.Auth{}, number) ::
+              {:ok, %HTTPoison.Response{}} | {:error, term}
 end
 
 defmodule Elevio.Client do
@@ -40,5 +42,9 @@ defmodule Elevio.Client do
     url_extension = "search/#{language_id}?query=#{keyword}&rows=4&page=#{page}"
 
     Elevio.Client.fetch_resource(auth, url_extension)
+  end
+
+  def get_paginated_articles(auth, page_number) do
+    Elevio.Client.fetch_resource(auth, "articles?page_size=4&page_number=#{page_number}")
   end
 end
