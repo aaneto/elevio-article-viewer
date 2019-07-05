@@ -45,6 +45,6 @@ defmodule Elevio.Client do
   end
 
   def get_paginated_articles(auth, page_number) do
-    Elevio.Client.fetch_resource(auth, "articles?page_size=4&page_number=#{page_number}")
+    Elevio.Client.fetch_resource(auth, "articles?page_size=4&page=#{page_number}")
   end
 end
