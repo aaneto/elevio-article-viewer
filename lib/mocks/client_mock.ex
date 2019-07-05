@@ -50,4 +50,8 @@ defmodule Elevio.ClientMock do
        }}
     end
   end
+
+  def get_paginated_articles(_auth, _page_number) do
+    {:error, {:invalidresponse, 404}}
+  end
 end
