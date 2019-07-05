@@ -39,7 +39,19 @@ defimpl AsTable, for: Elevio.KeywordSearch do
 end
 
 defimpl AsTable, for: Elevio.PaginatedArticles do
-  def as_table(_paginated_articles) do
-    IO.puts("FOOBAR")
+  def as_table(paginated_articles) do
+    tables =
+      Enum.map(paginated_articles.articles, fn article ->
+        Enum.join(
+          [
+            "\nTitle: #{article.title}",
+            "Id: #{article.id}",
+            "Status: #{article.status}"
+          ],
+          "\n"
+        )
+      end)
+
+    Enum.join(tables, "\n-----------\n")
   end
 end
