@@ -31,4 +31,17 @@ defmodule Elevio.App do
         {:error, error}
     end
   end
+
+  def get_paginated_articles(auth, page_number) do
+    case @client.get_paginated_articles(auth, page_number) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        Elevio.PaginatedArticles.decode_from_text(body)
+
+      {:ok, %HTTPoison.Response{status_code: code}} ->
+        {:error, {:invalidresponse, code}}
+
+      {:error, error} ->
+        {:error, error}
+    end
+  end
 end
