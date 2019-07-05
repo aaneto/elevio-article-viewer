@@ -40,37 +40,8 @@ defmodule Elevio.Article do
     :last_published_at
   ]
 
-  def find_missing_fields(article) do
-    required_fields = [
-      :id,
-      :order,
-      :author,
-      :source,
-      :access,
-      :status,
-      :updated_at,
-      :created_at,
-      :translations,
-      :category_id,
-      :contributors,
-      :editor_version
-    ]
-
-    case Enum.find(required_fields, fn field -> is_nil(Map.get(article, field)) end) do
-      nil -> {:ok, article}
-      field -> {:error, {:missingfield, :article, field}}
-    end
-  end
-
-  def validate(article) do
-    with {:ok, _} <- Elevio.Article.find_missing_fields(article),
-         {:ok, _} <- Elevio.Author.find_missing_fields(article.author),
-         {:ok, _} <- Elevio.Translation.find_missing_fields(article.translations),
-         do: {:ok, article}
-  end
-
   def decode_from_text(text) do
-    result =
+    article_json_result =
       Poison.decode(text,
         as: %Elevio.ArticleJSON{
           article: %Elevio.Article{
@@ -86,8 +57,8 @@ defmodule Elevio.Article do
         }
       )
 
-    case result do
-      {:ok, result} -> validate(result.article)
+    case article_json_result do
+      {:ok, article_json} -> {:ok, article_json.article}
       error -> error
     end
   end
