@@ -134,9 +134,21 @@ defmodule Elevio.TableView do
     end
   end
 
-  def show_all do
+  def show_articles_paginated(auth, page_number) do
     clear_screen()
-    IO.puts("Showing All")
+    IO.puts("Paginating all articles")
+
+    display_paginated_articles(auth, page_number)
+    prompt_paginated_articles(auth, page_number)
+  end
+
+  def display_paginated_articles(auth, page_number) do
+    {:ok, paginated_articles} = Elevio.App.get_paginated_articles(auth, page_number)
+
+    IO.puts(AsTable.as_table(paginated_articles))
+  end
+
+  def prompt_paginated_articles(_auth, _page_number) do
   end
 
   def clear_screen do

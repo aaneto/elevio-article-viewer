@@ -45,7 +45,7 @@ defmodule Elevio do
         end
 
       [] ->
-        Elevio.TableView.show_all()
+        Elevio.TableView.show_articles_paginated(auth, 1)
 
       _ ->
         IO.puts("You cannot view by id AND keyword.")

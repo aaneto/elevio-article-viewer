@@ -37,3 +37,9 @@ defimpl AsTable, for: Elevio.KeywordSearch do
     Enum.join(tables, "\n-----------\n")
   end
 end
+
+defimpl AsTable, for: Elevio.PaginatedArticles do
+  def as_table(_paginated_articles) do
+    IO.puts("FOOBAR")
+  end
+end
