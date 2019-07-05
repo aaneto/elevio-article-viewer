@@ -3,7 +3,6 @@ defmodule Elevio.Translation do
   The Translation is a textual representation of the
   Article, containing the body text in a particular language.
   """
-  @derive [Poison.Encoder]
   defstruct [
     :id,
     :body,

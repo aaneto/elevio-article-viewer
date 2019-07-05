@@ -4,7 +4,6 @@ defmodule Elevio.ArticleJSON do
   for articles, it merely contains a key 'article'
   with content attached to it.
   """
-  @derive [Poison.Encoder]
   @enforce_keys [:article]
   defstruct [:article]
 end
@@ -15,7 +14,6 @@ defmodule Elevio.Article do
   for deserializing and validating Article objects.
   """
 
-  @derive [Poison.Encoder]
   defstruct [
     :id,
     :title,

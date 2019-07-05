@@ -4,7 +4,6 @@ defmodule Elevio.KeywordResult do
   result on a keyword search on the Elevio
   API.
   """
-  @derive [Poison.Encoder]
   defstruct [
     :category_id,
     :id,
@@ -18,7 +17,6 @@ defmodule Elevio.KeywordSearch do
   a search by keyword on the Elevio API,
   with important paginating metadata.
   """
-  @derive [Poison.Encoder]
   defstruct [
     :count,
     :currentPage,

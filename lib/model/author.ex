@@ -3,7 +3,6 @@ defmodule Elevio.Author do
   The Author object contains metadata
   about a particular Author.
   """
-  @derive [Poison.Encoder]
   defstruct [
     :id,
     :name,
