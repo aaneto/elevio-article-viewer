@@ -27,13 +27,10 @@ defmodule Elevio.KeywordSearch do
   ]
 
   def decode_from_text(text) do
-    result =
-      Poison.decode!(text,
-        as: %Elevio.KeywordSearch{
-          results: [%Elevio.KeywordResult{}]
-        }
-      )
-
-    {:ok, result}
+    Poison.decode(text,
+      as: %Elevio.KeywordSearch{
+        results: [%Elevio.KeywordResult{}]
+      }
+    )
   end
 end

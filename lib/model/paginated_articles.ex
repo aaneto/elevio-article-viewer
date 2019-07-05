@@ -14,18 +14,15 @@ defmodule Elevio.PaginatedArticles do
   ]
 
   def decode_from_text(text) do
-    paginated_articles =
-      Poison.decode!(text,
-        as: %Elevio.PaginatedArticles{
-          articles: [
-            %Elevio.Article{
-              translations: [%Elevio.Translation{}]
-            }
-          ]
-        }
-      )
-
-    {:ok, paginated_articles}
+    Poison.decode(text,
+      as: %Elevio.PaginatedArticles{
+        articles: [
+          %Elevio.Article{
+            translations: [%Elevio.Translation{}]
+          }
+        ]
+      }
+    )
   end
 end
 
