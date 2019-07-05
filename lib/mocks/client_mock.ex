@@ -31,10 +31,23 @@ defmodule Elevio.ClientMock do
     end
   end
 
-  def get_articles_by_keyword(_auth, _keyword, _page, _language_id) do
-    {
-      :error,
-      {:invalidresponse, 404}
-    }
+  def get_articles_by_keyword(_auth, keyword, page, language_id) do
+    body =
+      case {keyword, page, language_id} do
+        {"other", 1, "en"} -> File.read!("test/res/keyword_search_1.json")
+        {"other", 2, "en"} -> File.read!("test/res/keyword_search_2.json")
+        {"foo", 1, "en"} -> File.read!("test/res/keyword_search_3.json")
+        _ -> nil
+      end
+
+    if is_nil(body) do
+      {:error, {:invalidresponse, 404}}
+    else
+      {:ok,
+       %HTTPoison.Response{
+         status_code: 200,
+         body: body
+       }}
+    end
   end
 end

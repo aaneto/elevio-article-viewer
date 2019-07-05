@@ -1,0 +1,19 @@
+{
+    "queryTerm": "foo",
+    "totalResults": 2,
+    "totalPages": 1,
+    "currentPage": 1,
+    "count": 2,
+    "results": [
+        {
+            "id": "5",
+            "title": "MOARR PAGES",
+            "category_id": 1
+        },
+        {
+            "id": "4",
+            "title": "Another testing article",
+            "category_id": 1
+        }
+    ]
+}

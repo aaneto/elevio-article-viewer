@@ -1,0 +1,29 @@
+{
+    "queryTerm": "other",
+    "totalResults": 5,
+    "totalPages": 2,
+    "currentPage": 1,
+    "count": 4,
+    "results": [
+        {
+            "id": "6",
+            "title": "BZZZZ",
+            "category_id": 1
+        },
+        {
+            "id": "5",
+            "title": "MOARR PAGES",
+            "category_id": 1
+        },
+        {
+            "id": "2",
+            "title": "Need a hand?",
+            "category_id": 1
+        },
+        {
+            "id": "4",
+            "title": "Another testing article",
+            "category_id": 1
+        }
+    ]
+}

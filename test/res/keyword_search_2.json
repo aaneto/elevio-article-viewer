@@ -1,0 +1,14 @@
+{
+    "queryTerm": "other",
+    "totalResults": 5,
+    "totalPages": 2,
+    "currentPage": 2,
+    "count": 1,
+    "results": [
+        {
+            "id": "3",
+            "title": "My testing article",
+            "category_id": 1
+        }
+    ]
+}
