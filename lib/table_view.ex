@@ -33,10 +33,8 @@ defmodule Elevio.TableView do
       Enum.join(
         [
           "e: exit",
-          "n: next",
-          "p: previous",
-          "g $id: goto id",
-          "k $keyword: change keyword"
+          "g page: goto another page",
+          "k keyword: search by another keyword"
         ],
         "\n"
       )
@@ -44,14 +42,8 @@ defmodule Elevio.TableView do
     prompt_text = "\n" <> instructions <> "\n"
 
     case prompt_text |> IO.gets() |> String.trim() do
-      "n" <> _ ->
-        search_by_keyword(auth, keyword, page + 1)
-
-      "p" <> _ ->
-        search_by_keyword(auth, keyword, page - 1)
-
       "g" <> new_page ->
-        case Integer.parse(new_page) do
+        case new_page |> String.trim() |> Integer.parse() do
           :error ->
             IO.puts("Could not parse Goto ID: #{new_page}.")
             search_by_keyword(auth, keyword, page)
@@ -81,9 +73,7 @@ defmodule Elevio.TableView do
       Enum.join(
         [
           "e: exit",
-          "n: next",
-          "p: previous",
-          "g $id: goto id"
+          "g page: goto another id"
         ],
         "\n"
       )
@@ -91,16 +81,10 @@ defmodule Elevio.TableView do
     prompt_text = "\n" <> instructions <> "\n"
 
     case prompt_text |> IO.gets() |> String.trim() do
-      "n" <> _ ->
-        search_by_id(auth, id + 1)
-
-      "p" <> _ ->
-        search_by_id(auth, id - 1)
-
       "g" <> new_id ->
-        case Integer.parse(new_id) do
+        case new_id |> String.trim() |> Integer.parse() do
           :error ->
-            IO.puts("Could not parse Goto ID: #{new_id}.")
+            IO.puts("Could not parse goto ID: #{new_id}.")
             search_by_id(auth, id)
 
           {num_id, _} ->
@@ -175,9 +159,7 @@ defmodule Elevio.TableView do
       Enum.join(
         [
           "e: exit",
-          "n: next",
-          "p: previous",
-          "g $page: goto page $page"
+          "g page: goto another page"
         ],
         "\n"
       )
@@ -185,12 +167,6 @@ defmodule Elevio.TableView do
     prompt_text = "\n" <> instructions <> "\n"
 
     case prompt_text |> IO.gets() |> String.trim() do
-      "n" <> _ ->
-        show_articles_paginated(auth, page_number + 1)
-
-      "p" <> _ ->
-        show_articles_paginated(auth, page_number - 1)
-
       "g" <> new_page ->
         case Integer.parse(new_page) do
           :error ->
