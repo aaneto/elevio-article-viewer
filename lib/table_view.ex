@@ -143,12 +143,67 @@ defmodule Elevio.TableView do
   end
 
   def display_paginated_articles(auth, page_number) do
-    {:ok, paginated_articles} = Elevio.App.get_paginated_articles(auth, page_number)
+    case Elevio.App.get_paginated_articles(auth, page_number) do
+      {:ok, paginated_articles} ->
+        IO.puts(AsTable.as_table(paginated_articles))
 
-    IO.puts(AsTable.as_table(paginated_articles))
+        IO.puts(
+          "\nDisplaying page #{paginated_articles.page_number} out of #{
+            paginated_articles.total_pages
+          }"
+        )
+
+      {:error, {:invalidresponse, 401}} ->
+        IO.puts("Invalid credentials. (401)")
+
+      {:error, {:invalidresponse, 404}} ->
+        IO.puts("Article does not exist (404).")
+
+      {:error, {:invalidresponse, status_code}} ->
+        IO.puts("Cannot display article, server responded with #{status_code}")
+
+      {:error, {:missingfield, where, field}} ->
+        IO.puts(~s(Error deserializing "#{field}" for "#{where}"))
+
+      {:error, reason} ->
+        IO.puts("An unexpected error occured: #{reason}")
+    end
   end
 
-  def prompt_paginated_articles(_auth, _page_number) do
+  def prompt_paginated_articles(auth, page_number) do
+    instructions =
+      Enum.join(
+        [
+          "e: exit",
+          "n: next",
+          "p: previous",
+          "g $page: goto page $page"
+        ],
+        "\n"
+      )
+
+    prompt_text = "\n" <> instructions <> "\n"
+
+    case prompt_text |> IO.gets() |> String.trim() do
+      "n" <> _ ->
+        show_articles_paginated(auth, page_number + 1)
+
+      "p" <> _ ->
+        show_articles_paginated(auth, page_number - 1)
+
+      "g" <> new_page ->
+        case Integer.parse(new_page) do
+          :error ->
+            IO.puts("Could not parse Goto page: #{new_page}.")
+            show_articles_paginated(auth, page_number)
+
+          {new_page_number, _} ->
+            show_articles_paginated(auth, new_page_number)
+        end
+
+      _ ->
+        IO.puts("Exitting.")
+    end
   end
 
   def clear_screen do
