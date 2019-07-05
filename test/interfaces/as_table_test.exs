@@ -3,8 +3,17 @@ defmodule AsTableTest do
   doctest AsTable
 
   test "test as table display of article" do
-    auth = %Elevio.Auth{api_key: nil, token: nil}
-    {:ok, article} = Elevio.App.get_article_by_id(auth, 1)
+    article = %Elevio.Article {
+      id: 2,
+      title: "Need a hand?",
+      status: "published",
+      source: "custom",
+      created_at: "2019-06-27T21:35:37Z",
+      author: %Elevio.Author {
+        name: "Safwan Kamarrudin",
+        email: "safwan@elev.io"
+      }
+    }
 
     article_string = """
     Id: 2
@@ -20,8 +29,30 @@ defmodule AsTableTest do
   end
 
   test "test as table display of keyword search" do
-    auth = %Elevio.Auth{api_key: nil, token: nil}
-    {:ok, keyword_search} = Elevio.App.get_articles_by_keyword(auth, "other", 1, "en")
+    keyword_search = %Elevio.KeywordSearch {
+      results: [
+        %Elevio.KeywordResult {
+          title: "BZZZZ",
+          category_id: 1,
+          id: 6
+        },
+        %Elevio.KeywordResult {
+          title: "MOARR PAGES",
+          category_id: 1,
+          id: 5
+        },
+        %Elevio.KeywordResult {
+          title: "Need a hand?",
+          category_id: 1,
+          id: 2
+        },
+        %Elevio.KeywordResult {
+          title: "Another testing article",
+          category_id: 1,
+          id: 4
+        }
+      ]
+    }
 
     article_string = """
 
