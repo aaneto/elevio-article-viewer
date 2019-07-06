@@ -8,8 +8,8 @@ defmodule Elevio.ClientMock do
   def get_article_by_id(auth, id) do
     body =
       case id do
-        0 -> File.read!("test/res/article.json")
-        1 -> File.read!("test/res/article_with_revision.json")
+        1 -> File.read!("test/res/article.json")
+        2 -> File.read!("test/res/article_with_revision.json")
         _ -> nil
       end
 
