@@ -5,7 +5,7 @@ defmodule Elevio.ClientMock do
   execution.
   """
   @behaviour Elevio.ClientBehaviour
-  def get_article_by_id(_auth, id) do
+  def get_article_by_id(auth, id) do
     body =
       case id do
         0 -> File.read!("test/res/article.json")
@@ -13,19 +13,15 @@ defmodule Elevio.ClientMock do
         _ -> nil
       end
 
-    if is_nil(body) do
-      {
-        :error,
-        {:invalidresponse, 404}
-      }
-    else
-      {
-        :ok,
-        %HTTPoison.Response{
-          status_code: 200,
-          body: body
-        }
-      }
+    case {auth, body} do
+      {nil, _} ->
+        {:error, {:invalidresponse, 401}}
+
+      {_, nil} ->
+        {:error, {:invalidresponse, 404}}
+
+      {_, body} ->
+        {:ok, %HTTPoison.Response{status_code: 200, body: body}}
     end
   end
 
