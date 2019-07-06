@@ -30,6 +30,8 @@ defmodule AsTableTest do
 
   test "test as table display of keyword search" do
     keyword_search = %Elevio.KeywordSearch{
+      currentPage: 1,
+      totalPages: 2,
       results: [
         %Elevio.KeywordResult{
           title: "BZZZZ",
@@ -55,6 +57,8 @@ defmodule AsTableTest do
     }
 
     article_string = """
+    Displaying page 1 out of 2
+
     Title: BZZZZ
     Category ID: 1
     ID: 6
