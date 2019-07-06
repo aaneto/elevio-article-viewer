@@ -6,13 +6,13 @@ defmodule Elevio.TableView do
   The Table is displayed with ANSI escape characters and can represent
   any data that can be displayed as a key-value pair.
   """
-  def search_by_keyword(auth, keyword, page) do
+  def search_by_keyword(auth, keyword, language, page) do
     clear_screen()
     IO.puts("Searching articles with keyword #{keyword}")
 
-    articles_option = Elevio.App.get_articles_by_keyword(auth, keyword, page, "en")
+    articles_option = Elevio.App.get_articles_by_keyword(auth, keyword, page, language)
     IO.puts(display_topic("Page", articles_option))
-    prompt_topic("page", fn new_page -> search_by_keyword(auth, keyword, new_page) end)
+    prompt_topic("page", fn new_page -> search_by_keyword(auth, keyword, language, new_page) end)
   end
 
   def search_by_id(auth, id) do

@@ -23,7 +23,7 @@ defmodule Elevio do
   end
 
   def parseArguments(args) do
-    options = [keyword: :string, id: :string]
+    options = [all: :boolean, keyword: :string, id: :string, language: :string]
     {table_view_options, _, _} = OptionParser.parse(args, strict: options)
     table_view_options
   end
@@ -34,9 +34,30 @@ defmodule Elevio do
       api_key: System.get_env("API_KEY")
     }
 
+    help_menu = """
+    Elevio CLI Client
+
+    Query for Elevio articles on your account by keyword,
+    id or pagination.
+
+    USAGE:
+      elevio --all
+      elevio --id ID
+      elevio --keyword KEYWORD --language LANGUAGE_ID
+    """
+
     case options do
-      [keyword: keyword] ->
-        Elevio.TableView.search_by_keyword(auth, keyword, 1)
+      [keyword: keyword, language: language] ->
+        Elevio.TableView.search_by_keyword(auth, keyword, language, 1)
+
+      [language: language, keyword: keyword] ->
+        Elevio.TableView.search_by_keyword(auth, keyword, language, 1)
+
+      [language: _] ->
+        IO.puts("Cannot query articles by languague_id, please provide a keyword.")
+
+      [keyword: _] ->
+        IO.puts("Please provide a language_id for the keyword search.")
 
       [id: id] ->
         case Integer.parse(id) do
@@ -44,11 +65,11 @@ defmodule Elevio do
           :error -> IO.puts("Invalid ID. Exitting.")
         end
 
-      [] ->
+      [all: true] ->
         Elevio.TableView.show_articles_paginated(auth, 1)
 
       _ ->
-        IO.puts("You cannot view by id AND keyword.")
+        IO.puts(help_menu)
     end
   end
 end
