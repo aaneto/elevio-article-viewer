@@ -9,45 +9,18 @@ defmodule TableViewTest do
     assert capture_io(fn -> Elevio.TableView.clear_screen() end) == expected_output
   end
 
-  test "table article 404 display" do
+  test "TableView 404 display" do
     auth = %Elevio.Auth{api_key: nil, token: nil}
-    expected_output = "Article does not exist (404).\n"
+    article_option = Elevio.App.get_article_by_id(auth, 117)
+    article_display = Elevio.TableView.display_topic("Article", article_option)
 
-    assert capture_io(fn ->
-             Elevio.TableView.display_single_article(auth, 10)
-           end) == expected_output
+    assert article_display == "Article not found. (404)"
   end
 
-  test "table article standard display" do
-    auth = %Elevio.Auth{api_key: nil, token: nil}
-    valid_id = 0
-    {:ok, article} = Elevio.App.get_article_by_id(auth, valid_id)
+  test "TableView 401 display" do
+    article_option = Elevio.App.get_article_by_id(nil, 117)
+    article_display = Elevio.TableView.display_topic("Article", article_option)
 
-    assert capture_io(fn ->
-             Elevio.TableView.display_single_article(auth, valid_id)
-           end) == AsTable.as_table(article) <> "\n"
-  end
-
-  test "table keyword search 404 display" do
-    auth = %Elevio.Auth{api_key: nil, token: nil}
-    expected_output = "Could not fetch page, server responded with: 404\n"
-
-    assert capture_io(fn ->
-             Elevio.TableView.display_keyword_search(auth, "key", 12)
-           end) == expected_output
-  end
-
-  test "table keyword search display" do
-    auth = %Elevio.Auth{api_key: nil, token: nil}
-    {:ok, keyword_search} = Elevio.App.get_articles_by_keyword(auth, "other", 1, "en")
-
-    display_footer =
-      "\n\nDisplaying page #{keyword_search.currentPage} out of #{keyword_search.totalPages}\n"
-
-    expected_display = AsTable.as_table(keyword_search) <> display_footer
-
-    assert capture_io(fn ->
-             Elevio.TableView.display_keyword_search(auth, "other", 1)
-           end) == expected_display
+    assert article_display == "Invalid Credentials. (401)"
   end
 end
