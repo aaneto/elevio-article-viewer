@@ -45,7 +45,23 @@ defmodule Elevio.ClientMock do
     end
   end
 
-  def get_paginated_articles(_auth, _page_number) do
-    {:error, {:invalidresponse, 404}}
+  def get_paginated_articles(auth, page_number) do
+    body =
+      case page_number do
+        1 -> File.read!("test/res/all_articles_1.json")
+        2 -> File.read!("test/res/all_articles_2.json")
+        _ -> nil
+      end
+
+    case {auth, body} do
+      {nil, _} ->
+        {:error, {:invalidresponse, 401}}
+
+      {_, nil} ->
+        {:error, {:invalidresponse, 404}}
+
+      {_, body} ->
+        {:ok, %HTTPoison.Response{status_code: 200, body: body}}
+    end
   end
 end

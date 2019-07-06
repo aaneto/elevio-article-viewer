@@ -1,0 +1,142 @@
+{
+    "total_pages": 2,
+    "total_entries": 6,
+    "page_size": 4,
+    "page_number": 1,
+    "articles": [
+        {
+            "updated_at": "2019-06-29T23:18:37Z",
+            "translations": [
+                {
+                    "updated_at": "2019-06-29T23:18:37Z",
+                    "title": "gregr",
+                    "language_id": "en",
+                    "id": 4
+                }
+            ],
+            "title": "gregr",
+            "subcategory_groups": [],
+            "status": "published",
+            "source": "custom",
+            "smart_groups": [],
+            "revision_status": null,
+            "order": 1,
+            "notes": "This is just a sample article to get you going, feel free to edit or remove this article",
+            "keywords": [
+                "help",
+                "morehelp"
+            ],
+            "id": 1,
+            "has_revision": false,
+            "external_id": null,
+            "editor_version": "2",
+            "category_id": 1,
+            "category_groups": [],
+            "article_groups": [],
+            "access_emails": [],
+            "access_domains": [],
+            "access": "public"
+        },
+        {
+            "updated_at": "2019-07-03T01:19:23Z",
+            "translations": [
+                {
+                    "updated_at": "2019-07-03T01:19:23Z",
+                    "title": "Need a hand?",
+                    "language_id": "en",
+                    "id": 5
+                }
+            ],
+            "title": "Need a hand?",
+            "subcategory_groups": [],
+            "status": "published",
+            "source": "custom",
+            "smart_groups": [],
+            "revision_status": null,
+            "order": 2,
+            "notes": null,
+            "keywords": [
+                "other"
+            ],
+            "id": 2,
+            "has_revision": false,
+            "external_id": null,
+            "editor_version": "2",
+            "category_id": 1,
+            "category_groups": [],
+            "article_groups": [],
+            "access_emails": [],
+            "access_domains": [],
+            "access": "public"
+        },
+        {
+            "updated_at": "2019-06-28T00:25:24Z",
+            "translations": [
+                {
+                    "updated_at": "2019-06-28T00:25:24Z",
+                    "title": "My testing article",
+                    "language_id": "en",
+                    "id": 6
+                }
+            ],
+            "title": "My testing article",
+            "subcategory_groups": [],
+            "status": "published",
+            "source": "custom",
+            "smart_groups": [],
+            "revision_status": null,
+            "order": 999,
+            "notes": null,
+            "keywords": [
+                "onekeyword",
+                "other",
+                "potatokeyword",
+                "orangekeyword"
+            ],
+            "id": 3,
+            "has_revision": false,
+            "external_id": null,
+            "editor_version": "3",
+            "category_id": 1,
+            "category_groups": [],
+            "article_groups": [],
+            "access_emails": [],
+            "access_domains": [],
+            "access": "public"
+        },
+        {
+            "updated_at": "2019-07-03T01:16:41Z",
+            "translations": [
+                {
+                    "updated_at": "2019-07-03T01:16:41Z",
+                    "title": "Another testing article",
+                    "language_id": "en",
+                    "id": 8
+                }
+            ],
+            "title": "Another testing article",
+            "subcategory_groups": [],
+            "status": "published",
+            "source": "custom",
+            "smart_groups": [],
+            "revision_status": null,
+            "order": 999,
+            "notes": null,
+            "keywords": [
+                "other",
+                "foo",
+                "bar"
+            ],
+            "id": 4,
+            "has_revision": false,
+            "external_id": null,
+            "editor_version": "3",
+            "category_id": 1,
+            "category_groups": [],
+            "article_groups": [],
+            "access_emails": [],
+            "access_domains": [],
+            "access": "public"
+        }
+    ]
+}

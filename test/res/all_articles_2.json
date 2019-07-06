@@ -1,0 +1,73 @@
+{
+    "total_pages": 2,
+    "total_entries": 6,
+    "page_size": 4,
+    "page_number": 2,
+    "articles": [
+        {
+            "updated_at": "2019-07-03T01:21:06Z",
+            "translations": [
+                {
+                    "updated_at": "2019-07-03T01:21:06Z",
+                    "title": "MOARR PAGES",
+                    "language_id": "en",
+                    "id": 11
+                }
+            ],
+            "title": "MOARR PAGES",
+            "subcategory_groups": [],
+            "status": "published",
+            "source": "custom",
+            "smart_groups": [],
+            "revision_status": null,
+            "order": 999,
+            "notes": null,
+            "keywords": [
+                "other",
+                "foo"
+            ],
+            "id": 5,
+            "has_revision": false,
+            "external_id": null,
+            "editor_version": "3",
+            "category_id": 1,
+            "category_groups": [],
+            "article_groups": [],
+            "access_emails": [],
+            "access_domains": [],
+            "access": "public"
+        },
+        {
+            "updated_at": "2019-07-03T01:21:29Z",
+            "translations": [
+                {
+                    "updated_at": "2019-07-03T01:21:29Z",
+                    "title": "BZZZZ",
+                    "language_id": "en",
+                    "id": 12
+                }
+            ],
+            "title": "BZZZZ",
+            "subcategory_groups": [],
+            "status": "published",
+            "source": "custom",
+            "smart_groups": [],
+            "revision_status": null,
+            "order": 999,
+            "notes": null,
+            "keywords": [
+                "other"
+            ],
+            "id": 6,
+            "has_revision": false,
+            "external_id": null,
+            "editor_version": "3",
+            "category_id": 1,
+            "category_groups": [],
+            "article_groups": [],
+            "access_emails": [],
+            "access_domains": [],
+            "access": "public"
+        }
+    ]
+}
