@@ -1,31 +1,3 @@
-defmodule Elevio.PaginatedArticles do
-  @moduledoc """
-  The PaginatedArticles struct holds information
-  about a "Search All" action on the Elevio API,
-  all available articles are returned in a paginated
-  fashion.
-  """
-  defstruct [
-    :articles,
-    :page_size,
-    :page_number,
-    :total_pages,
-    :total_entries
-  ]
-
-  def decode_from_text(text) do
-    Poison.decode(text,
-      as: %Elevio.PaginatedArticles{
-        articles: [
-          %Elevio.Article{
-            translations: [%Elevio.Translation{}]
-          }
-        ]
-      }
-    )
-  end
-end
-
 defmodule Elevio.PaginatedArticle do
   @moduledoc """
   The PaginatedArticle is a paginated version
@@ -55,4 +27,32 @@ defmodule Elevio.PaginatedArticle do
     :revision_status,
     :subcategory_groups
   ]
+end
+
+defmodule Elevio.PaginatedArticles do
+  @moduledoc """
+  The PaginatedArticles struct holds information
+  about a "Search All" action on the Elevio API,
+  all available articles are returned in a paginated
+  fashion.
+  """
+  defstruct [
+    :articles,
+    :page_size,
+    :page_number,
+    :total_pages,
+    :total_entries
+  ]
+
+  def decode_from_text(text) do
+    Poison.decode(text,
+      as: %Elevio.PaginatedArticles{
+        articles: [
+          %Elevio.PaginatedArticle{
+            translations: [%Elevio.Translation{}]
+          }
+        ]
+      }
+    )
+  end
 end
