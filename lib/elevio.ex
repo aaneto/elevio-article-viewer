@@ -16,10 +16,10 @@ defmodule Elevio do
   ```
 
   """
-  def main(args \\ []) do
+  def main(args \\ [], io \\ IO) do
     args
     |> parseArguments
-    |> createTableView
+    |> createTableView(io)
   end
 
   def parseArguments(args) do
@@ -28,13 +28,8 @@ defmodule Elevio do
     table_view_options
   end
 
-  def createTableView(options) do
-    auth = %Elevio.Auth{
-      token: System.get_env("TOKEN"),
-      api_key: System.get_env("API_KEY")
-    }
-
-    help_menu = """
+  def getHelpMenu do
+    """
     Elevio CLI Client
 
     Query for Elevio articles on your account by keyword,
@@ -45,31 +40,35 @@ defmodule Elevio do
       elevio --id ID
       elevio --keyword KEYWORD --language LANGUAGE_ID
     """
+  end
 
-    case options do
+  def createTableView(options, io \\ IO) do
+    auth = %Elevio.Auth{
+      token: System.get_env("TOKEN"),
+      api_key: System.get_env("API_KEY")
+    }
+
+    case Enum.sort(options) do
       [keyword: keyword, language: language] ->
-        Elevio.TableView.search_by_keyword(auth, keyword, language, 1)
-
-      [language: language, keyword: keyword] ->
-        Elevio.TableView.search_by_keyword(auth, keyword, language, 1)
+        Elevio.TableView.search_by_keyword(auth, keyword, language, 1, io)
 
       [language: _] ->
-        IO.puts("Cannot query articles by languague_id, please provide a keyword.")
+        io.puts("Cannot query articles by languague, please provide a keyword.")
 
       [keyword: _] ->
-        IO.puts("Please provide a language_id for the keyword search.")
+        io.puts("Please provide a language for the keyword search.")
 
       [id: id] ->
         case Integer.parse(id) do
-          {num, _} -> Elevio.TableView.search_by_id(auth, num)
-          :error -> IO.puts("Invalid ID. Exitting.")
+          {num, _} -> Elevio.TableView.search_by_id(auth, num, io)
+          :error -> io.puts("Invalid ID. Exitting.")
         end
 
       [all: true] ->
-        Elevio.TableView.show_articles_paginated(auth, 1)
+        Elevio.TableView.show_articles_paginated(auth, 1, io)
 
       _ ->
-        IO.puts(help_menu)
+        io.puts(getHelpMenu())
     end
   end
 end
