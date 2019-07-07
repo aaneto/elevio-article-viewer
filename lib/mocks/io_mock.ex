@@ -16,6 +16,12 @@ defmodule Elevio.FakeIO do
     Agent.start_link(fn -> {value_to_return, captured_io} end, name: __MODULE__)
   end
 
+  def reset_captured_input do
+    Agent.update(__MODULE__, fn {gets_returned, _} ->
+      {gets_returned, ""}
+    end)
+  end
+
   def get_input do
     Agent.get(__MODULE__, &elem(&1, 1))
   end
