@@ -63,18 +63,32 @@ defmodule TableViewTest do
     assert AsTable.as_table(article) == article_display
   end
 
+  test "TableView prompt received eof" do
+    FakeIO.start_io(:eof)
+    TableView.prompt_topic("Article", fn id -> id end, FakeIO)
+
+    assert FakeIO.get_input() == "Received EOF, exitting.\n"
+  end
+
+  test "TableView prompt erroed" do
+    FakeIO.start_io({:error, :absurderror})
+    TableView.prompt_topic("Article", fn id -> id end, FakeIO)
+
+    assert FakeIO.get_input() == "An error occurred processing your input: absurderror.\n"
+  end
+
   test "TableView prompt exit" do
     FakeIO.start_io("e")
     TableView.prompt_topic("Article", fn id -> id end, FakeIO)
 
-    assert FakeIO.get_input() == "Exitting. \n"
+    assert FakeIO.get_input() == "Received response 'e'. Exitting.\n"
   end
 
   test "TableView prompt go to invalid id" do
     FakeIO.start_io("g falafel")
     TableView.prompt_topic("Article", fn id -> id end, FakeIO)
 
-    assert FakeIO.get_input() == "Could not parse page  falafel\n"
+    assert FakeIO.get_input() == "Could not parse page 'falafel'\n"
   end
 
   test "TableView prompt go to valid id" do
@@ -104,7 +118,7 @@ defmodule TableViewTest do
     Author Email: safwan@elev.io
     Created @: 2019-06-27T21:35:37Z
 
-    Exitting. 
+    Received response 'e'. Exitting.
     """
 
     assert FakeIO.get_input() == application_output
@@ -140,7 +154,7 @@ defmodule TableViewTest do
     Category ID: 1
     ID: 4
 
-    Exitting. 
+    Received response 'e'. Exitting.
     """
 
     assert FakeIO.get_input() == application_output
@@ -176,7 +190,7 @@ defmodule TableViewTest do
     Id: 4
     Status: published
 
-    Exitting. 
+    Received response 'e'. Exitting.
     """
 
     assert FakeIO.get_input() == application_output

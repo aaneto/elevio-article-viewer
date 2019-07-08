@@ -57,24 +57,30 @@ defmodule Elevio.TableView do
     end
   end
 
+  def handle_goto_id(next_display, goto_argument, io \\ IO) do
+    trimmed_argument = String.trim(goto_argument)
+    case Integer.parse(trimmed_argument) do
+      :error ->
+        io.puts("Could not parse page '#{trimmed_argument}'")
+
+      {goto_id, _} ->
+        next_display.(goto_id)
+    end
+  end
+
   def prompt_topic(topic, next_display, io \\ IO) do
     prompt_text = """
     e: exit,
     g #{topic}: goto new #{topic}
     """
 
-    case prompt_text |> io.gets() |> String.trim() do
-      "g" <> new_topic_id_str ->
-        case Integer.parse(String.trim(new_topic_id_str)) do
-          :error ->
-            io.puts("Could not parse page #{new_topic_id_str}")
+    user_response = io.gets(prompt_text)
 
-          {new_topic_id, _} ->
-            next_display.(new_topic_id)
-        end
-
-      _ ->
-        io.puts("Exitting. ")
+    case user_response do
+      :eof -> io.puts("Received EOF, exitting.")
+      {:error, reason} -> io.puts("An error occurred processing your input: #{reason}.")
+      "g" <> goto_id -> handle_goto_id(next_display, goto_id, io)
+      response -> io.puts("Received response '#{String.trim(response)}'. Exitting.")
     end
   end
 
