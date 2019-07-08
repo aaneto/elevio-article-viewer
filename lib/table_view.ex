@@ -59,6 +59,7 @@ defmodule Elevio.TableView do
 
   def handle_goto_id(next_display, goto_argument, io \\ IO) do
     trimmed_argument = String.trim(goto_argument)
+
     case Integer.parse(trimmed_argument) do
       :error ->
         io.puts("Could not parse page '#{trimmed_argument}'")
