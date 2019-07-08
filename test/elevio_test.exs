@@ -5,26 +5,26 @@ defmodule ElevioTest do
   alias Elevio.FakeIO
 
   test "parse keyword cli argument" do
-    options = Elevio.parseArguments(["--keyword", "key"])
+    options = Elevio.parse_arguments(["--keyword", "key"])
 
     assert options == [keyword: "key"]
   end
 
   test "parse id cli argument" do
-    options = Elevio.parseArguments(["--id", "2"])
+    options = Elevio.parse_arguments(["--id", "2"])
 
     assert options == [id: "2"]
   end
 
   test "parse id and keyword cli arguments" do
-    options = Elevio.parseArguments(["--id", "2", "--keyword", "key"])
+    options = Elevio.parse_arguments(["--id", "2", "--keyword", "key"])
 
     assert options == [id: "2", keyword: "key"]
   end
 
   test "ignore invalid cli argument" do
-    mispelled_keyword = Elevio.parseArguments(["--keywrd", "foo"])
-    incomplete_id = Elevio.parseArguments(["--id"])
+    mispelled_keyword = Elevio.parse_arguments(["--keywrd", "foo"])
+    incomplete_id = Elevio.parse_arguments(["--id"])
 
     assert mispelled_keyword == []
     assert incomplete_id == []
@@ -36,7 +36,7 @@ defmodule ElevioTest do
     FakeIO.start_io("e")
     Elevio.main(["--id", "1", "--keyword", "key"], FakeIO)
 
-    assert FakeIO.get_input() == Elevio.getHelpMenu() <> "\n"
+    assert FakeIO.get_input() == Elevio.get_help_menu() <> "\n"
   end
 
   test "user inputed invalid id" do

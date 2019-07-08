@@ -18,17 +18,17 @@ defmodule Elevio do
   """
   def main(args \\ [], io \\ IO) do
     args
-    |> parseArguments
-    |> createTableView(io)
+    |> parse_arguments
+    |> create_table_view(io)
   end
 
-  def parseArguments(args) do
+  def parse_arguments(args) do
     options = [all: :boolean, keyword: :string, id: :string, language: :string]
     {table_view_options, _, _} = OptionParser.parse(args, strict: options)
     table_view_options
   end
 
-  def getHelpMenu do
+  def get_help_menu do
     """
     Elevio CLI Client
 
@@ -42,7 +42,7 @@ defmodule Elevio do
     """
   end
 
-  def createTableView(options, io \\ IO) do
+  def create_table_view(options, io \\ IO) do
     auth = %Elevio.Auth{
       token: System.get_env("TOKEN"),
       api_key: System.get_env("API_KEY")
@@ -68,7 +68,7 @@ defmodule Elevio do
         Elevio.TableView.show_articles_paginated(auth, 1, io)
 
       _ ->
-        io.puts(getHelpMenu())
+        io.puts(get_help_menu())
     end
   end
 end
