@@ -62,3 +62,34 @@ export TOKEN=YOUR_TOKEN
 mix escript.install
 ```
 
+
+Paginating all articles should give you a terminal interface like this:
+```bash
+Paginating all articles
+Displaying page 1 out of 2
+
+Title: gregr
+Id: 1
+Status: published
+
+-----------
+Title: Need a hand?
+Id: 2
+Status: published
+
+-----------
+Title: My testing article
+Id: 3
+Status: published
+
+-----------
+Title: Another testing article
+Id: 4
+Status: published
+
+e: exit,
+g page: goto new page
+
+```
+
+There you can navigate a little using the query you entered.
