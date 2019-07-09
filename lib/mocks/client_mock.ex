@@ -9,7 +9,7 @@ defmodule Elevio.ClientMock do
     body =
       case id do
         1 -> File.read!("test/res/article.json")
-        2 -> File.read!("test/res/article_with_revision.json")
+        2 -> File.read!("test/res/invalid_json.json")
         _ -> nil
       end
 
