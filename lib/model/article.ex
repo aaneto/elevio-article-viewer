@@ -59,7 +59,7 @@ defmodule Elevio.Article do
 
     case article_json_result do
       {:ok, article_json} -> {:ok, article_json.article}
-      error -> error
+      _ -> {:error, :invalidjson}
     end
   end
 end
