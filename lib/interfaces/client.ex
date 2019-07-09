@@ -21,9 +21,17 @@ defmodule Elevio.Client do
   paginating them.
 
   """
-  def fetch_resource(auth, resource) do
+  def fetch_resource(auth, resource, query \\ %{}) do
     HTTPoison.start()
     base_url = "https://api.elevio-staging.com/v1/"
+
+    queries =
+      Enum.map(
+        query,
+        fn entry -> "#{elem(entry, 0)}=#{elem(entry, 1)}" end
+      )
+
+    query_string = "?" <> Enum.join(queries, "&")
 
     headers = [
       Authorization: "Bearer #{auth.token}",
@@ -31,7 +39,7 @@ defmodule Elevio.Client do
       "x-api-key": auth.api_key
     ]
 
-    HTTPoison.get(base_url <> resource, headers)
+    HTTPoison.get(base_url <> resource <> query_string, headers)
   end
 
   def get_article_by_id(auth, id) do
@@ -39,12 +47,21 @@ defmodule Elevio.Client do
   end
 
   def get_articles_by_keyword(auth, keyword, page, language_id) do
-    url_extension = "search/#{language_id}?query=#{keyword}&rows=4&page=#{page}"
+    query = %{
+      rows: 4,
+      page: page,
+      query: keyword
+    }
 
-    Elevio.Client.fetch_resource(auth, url_extension)
+    Elevio.Client.fetch_resource(auth, "search/#{language_id}", query)
   end
 
   def get_paginated_articles(auth, page_number) do
-    Elevio.Client.fetch_resource(auth, "articles?page_size=4&page=#{page_number}")
+    query = %{
+      page_size: 4,
+      page: page_number
+    }
+
+    Elevio.Client.fetch_resource(auth, "articles", query)
   end
 end
