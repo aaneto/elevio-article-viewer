@@ -1,6 +1,7 @@
 # Elevio Article Viewer
 
 [![Build Status](https://travis-ci.org/aaneto/elevio-article-viewer.svg?branch=master)](https://travis-ci.org/aaneto/elevio-article-viewer)
+[![codecov](https://codecov.io/gh/aaneto/elevio-article-viewer/branch/master/graph/badge.svg)](https://codecov.io/gh/aaneto/elevio-article-viewer)
 
 The Elevio Article Viewer is a CLI tool for visualizing articles using the Elevio API.
 
