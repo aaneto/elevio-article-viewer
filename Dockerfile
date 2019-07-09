@@ -8,6 +8,7 @@ COPY mix.lock .
 
 RUN mix deps.get
 
+COPY test ./test
 COPY config ./config
 COPY lib ./lib
 
