@@ -4,6 +4,7 @@ defmodule ClientTest do
   doctest Elevio.Client
   alias Elevio.Client
 
+  @tag :skip
   test "get a 200 response searching paginated articles" do
     auth = %Elevio.Auth{
       api_key: System.get_env("API_KEY"),
@@ -16,6 +17,7 @@ defmodule ClientTest do
     assert status_code == 200
   end
 
+  @tag :skip
   test "get a 200 response searching articles by keyword" do
     auth = %Elevio.Auth{
       api_key: System.get_env("API_KEY"),
@@ -28,6 +30,7 @@ defmodule ClientTest do
     assert status_code == 200
   end
 
+  @tag :skip
   test "get a 200 response searching articles by id" do
     auth = %Elevio.Auth{
       api_key: System.get_env("API_KEY"),
